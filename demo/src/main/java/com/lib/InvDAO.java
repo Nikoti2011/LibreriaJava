@@ -130,8 +130,7 @@ public class InvDAO {
         }
     }
 
-    public ArrayList<libro> GetLibros(){
-        
+    public ArrayList<libro> GetLibros(){  
         ArrayList<libro> ret = new ArrayList<>(); 
         try {
             Statement cursor = conn.createStatement();
@@ -188,5 +187,44 @@ public class InvDAO {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public ArrayList<libro> FilterLibro(String name){
+        ArrayList<libro> ret = new ArrayList<>(); 
+        try {
+            PreparedStatement psc = conn.prepareStatement("SELECT * FROM Libros WHERE name = ?");
+            psc.setString(1, name);
+            ResultSet rs = psc.executeQuery();
+            while (rs.next()){
+                String format = rs.getString("tipo");
+                libro l = null;
+                if (format.equals("Fisico")){
+                    l = new librofisico(rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("genero"),
+                    rs.getInt("precio"),
+                    rs.getInt("paginas"));
+                }
+                else if (format.equals("Digital")){
+                    l = new librodigital(rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("genero"),
+                    rs.getInt("precio"),
+                    rs.getInt("tamano"));
+                }
+                else if (format.equals("Audio")){
+                    l = new audiolibro(rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("genero"),
+                    rs.getInt("precio"),
+                    rs.getDouble("duracion"));
+                }
+
+                if (l != null) ret.add(l);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return ret;
     }
 }

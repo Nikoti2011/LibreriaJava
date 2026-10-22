@@ -90,8 +90,14 @@ public class menu {
                     }
                     System.out.println("Libro actualizado");
                 break;
-                case 4: 
-                    System.out.println("Filtrar"); 
+                case 4:
+                    SS.nextLine();
+                    System.out.println("Filtrar");
+                    String search = SS.nextLine();
+                    ArrayList<libro> resu = Dao.FilterLibro(search);
+                    for (libro l : resu){
+                        System.out.println(l.getId() + " " + l.getName() + " " + l.getPrecio() + " " + l.getCategoria());
+                    }
                 break;
                 case 5:
                     System.out.println("Listar");
