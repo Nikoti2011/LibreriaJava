@@ -132,3 +132,5 @@ public class bd {
 //categoria,duracion,tamano
 
 //registrar libro, eliminar, editar, filtrar, listado, cerrar
+
+//commit testing
