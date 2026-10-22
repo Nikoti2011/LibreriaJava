@@ -1,0 +1,13 @@
+com\lib\libro.class
+com\lib\exceptions.class
+com\lib\librofisico.class
+com\lib\Prestar.class
+com\lib\persona.class
+com\lib\empleado.class
+com\lib\bd.class
+com\lib\librodigital.class
+com\lib\audiolibro.class
+com\lib\cliente.class
+com\lib\Descargar.class
+com\lib\Libreria.class
+com\lib\App.class
